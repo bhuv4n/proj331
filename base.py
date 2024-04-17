@@ -1,17 +1,15 @@
 from tkinter import *
 from tkinter import ttk
-# from google.oauth2 import service_account
-# from googleapiclient.discovery import build
+from google.oauth2 import service_account
+from googleapiclient.discovery import build
+
+
 # pip install google-cloud
 # pip install google-auth
 # pip install google-auth-oauthlib
 # pip install google-api-python-client
 # 1w3SIDdnR9IkyYulGPLOcyWa7uANSWFQMyvz1ZCnG1XM
 # https://developers.google.com/sheets/api/guides/values
-# https://colab.research.google.com/drive/1OSQm6j9IKp3cokFlg5KxHssN9Qs-FhHS
-# https://docs.google.com/spreadsheets/d/1Wv8mQitDsRjozj3wLqBLAiyN0x0kEWj6eUOp3KdyGfQ/edit#gid=0
-# https://drive.google.com/file/d/1S9JJ0sdw_dup7xnhBLj1XJzdi9blxAA8/view
-
 
 def center(win):
     win.update_idletasks()
@@ -32,11 +30,12 @@ style = ttk.Style()
 style.theme_use("alt")
 ebg = "#363636"
 fg = "#cdcdcd"
-# credentials = service_account.Credentials.from_service_account_file("key.json", scopes=["https://www.googleapis.com/auth/spreadsheets"])
-# service = build("sheets", "v4", credentials=credentials)
-# request = service.spreadsheets().get(spreadsheetId=spreadsheet_id, ranges=[], includeGridData=False)
-# sheet_props = request.execute()
-# print(sheet_props["properties"]["title"])
+spid = "1w3SIDdnR9IkyYulGPLOcyWa7uANSWFQMyvz1ZCnG1XM"
+credentials = service_account.Credentials.from_service_account_file("key.json", scopes=["https://www.googleapis.com/auth/spreadsheets"])
+service = build("sheets", "v4", credentials=credentials)
+request = service.spreadsheets().get(spreadsheetId=spid, ranges=[], includeGridData=False)
+sheet_props = request.execute()
+print(sheet_props["properties"]["title"])
 menu = [" Select a dataset", " MaliciousURLs.csv", " Add new DB server"]
 root.geometry("500x220")
 root.resizable(width=False, height=False)
